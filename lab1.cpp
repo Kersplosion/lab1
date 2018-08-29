@@ -70,12 +70,12 @@ public:
 		xres = 800;
 		yres = 600;
 		//define a box shape
-		boxwidth = 100;
-		boxheight = 10;
 		for(int i = 0; i<5; i++)
 		{
-			box.center.x = 0 + i*65;
-			box.center.y = 600 - i*60;
+			box[i].width = 100;
+			box[i].height = 10;
+			box[i].center.x = 65 + i*65;
+			box[i].center.y = 540 - i*60;
 		}
 		n = 0;
 	}
@@ -275,14 +275,16 @@ void movement()
 	p->velocity.y -= GRAVITY;
 
 	//check for collision with shapes...
-	Shape *s = &g.box;
+	for(int j =0; j<5; j++)
+	{
+	Shape *s = &g.box[j];
 	if (p->s.center.y < s->center.y + s->height &&
 		p->s.center.y > s->center.y - s->height &&
 		p->s.center.x > s->center.x - s->width && 
 		p->s.center.x < s->center.x + s->width)
 
-		p->velocity.y *= -0.75;
-		
+		p->velocity.y *= -0.55;
+	}
 
 
 
@@ -301,12 +303,14 @@ void render()
 	//Draw shapes...
 	//
 	//draw a box
+	float w, h;
+	for(int i=0; i<5; i++)
+	{
 	Shape *s;
 	glColor3ub(90,140,90);
-	s = &g.box;
+	s = &g.box[i];
 	glPushMatrix();
 	glTranslatef(s->center.x, s->center.y, s->center.z);
-	float w, h;
 	w = s->width;
 	h = s->height;
 	glBegin(GL_QUADS);
@@ -316,6 +320,7 @@ void render()
 		glVertex2i( w, -h);
 	glEnd();
 	glPopMatrix();
+	}
 	//
 	//Draw the particle here
 	for(int i=0; i<g.n;i++)
