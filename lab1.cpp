@@ -63,17 +63,20 @@ struct Particle {
 class Global {
 public:
 	int xres, yres;
-	Shape box;
+	Shape box[5];
 	Particle particle[MAX_PARTICLES];
 	int n;
 	Global() {
 		xres = 800;
 		yres = 600;
 		//define a box shape
-		box.width = 100;
-		box.height = 10;
-		box.center.x = 120 + 5*65;
-		box.center.y = 500 - 5*60;
+		boxwidth = 100;
+		boxheight = 10;
+		for(int i = 0; i<5; i++)
+		{
+			box.center.x = 0 + i*65;
+			box.center.y = 600 - i*60;
+		}
 		n = 0;
 	}
 } g;
