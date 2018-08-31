@@ -74,7 +74,7 @@ public:
 		{
 			box[i].width = 100;
 			box[i].height = 10;
-			box[i].center.x = 65 + i*65;
+			box[i].center.x = 130 + i*65;
 			box[i].center.y = 540 - i*60;
 		}
 		n = 0;
@@ -145,7 +145,7 @@ void check_mouse(XEvent *e);
 int check_keys(XEvent *e);
 void movement();
 void render();
-
+void makeParticle(int x, int y);
 
 
 //=====================================
@@ -165,6 +165,8 @@ int main()
 			done = check_keys(&e);
 		}
 		movement();
+		if(rand()%5 == 0)
+			makeParticle(70, 570);
 		render();
 		x11.swapBuffers();
 	}
@@ -194,7 +196,7 @@ void makeParticle(int x, int y)
 	p->s.center.x = x;
 	p->s.center.y = y;
 	p->velocity.y = -4.0;
-	p->velocity.x =  1.0;
+	p->velocity.x = 1.0;
 	++g.n;
 }
 
@@ -231,15 +233,9 @@ void check_mouse(XEvent *e)
 			savex = e->xbutton.x;
 			savey = e->xbutton.y;
 			int y = g.yres - e->xbutton.y;
-			makeParticle(e->xbutton.x, y);
-			makeParticle(e->xbutton.x, y);
-			makeParticle(e->xbutton.x, y);
-			makeParticle(e->xbutton.x, y);
-			makeParticle(e->xbutton.x, y);
-
-
 		}
 	}
+	//makeParticle(savex, g.yres - savey);
 }
 
 int check_keys(XEvent *e)
