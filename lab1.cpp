@@ -39,6 +39,9 @@ using namespace std;
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
 #include <GL/glx.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
+#include "fonts.h"
 
 const int MAX_PARTICLES = 2000;
 const float GRAVITY = 0.1;
@@ -183,7 +186,7 @@ void init_opengl(void)
 	//Set 2D mode (no perspective)
 	glOrtho(0, g.xres, 0, g.yres, -1, 1);
 	//Set the screen background color
-	glClearColor(0.1, 0.1, 0.1, 1.0);
+	glClearColor(0.1, 0.1, 0.1, 1.0);	
 }
 
 void makeParticle(int x, int y)
@@ -337,7 +340,37 @@ void render()
 	}
 	//
 	//Draw your 2D text here
+	/*
+	Rect r;
+	unsigned int c = 0x00111111;
+	for(int i = 0; i<5; i++)
+	{
+		r.center = g.box[i].center.x;
+		r.bot = g.box[i].center.y - g.box[i].height;
+		r.left = g.box[i].center.x - g.box[i].width;
 
+		switch(i)
+		{
+			case 0:
+				ggprint8b(&r, 16, c, "Requirements");
+				break;
+			case 1:
+				ggprint8b(&r, 16, c, "Design");
+				break;
+			case 2: 
+				ggprint8b(&r, 16, c, "Implementation");
+				break;
+			case 3:
+				ggprint8b(&r, 16, c, "Verification");
+				break;
+			case 4:
+				ggprint8b(&r, 16, c, "Maintenance");
+				break;
+			default:
+				break;
+		}	
+	}
+	*/
 
 
 
