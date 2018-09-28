@@ -42,6 +42,7 @@ using namespace std;
 #include <GL/glu.h>
 #include <GL/gl.h>
 #include "fonts.h"
+//extern void addText(Rect r, const char* text);
 
 const int MAX_PARTICLES = 2000;
 const float GRAVITY = 0.1;
@@ -298,6 +299,7 @@ void movement()
 
 void render()
 {
+	extern void addText(Rect r, const char* text);
 	glClear(GL_COLOR_BUFFER_BIT);
 	//Draw shapes...
 	//
@@ -340,7 +342,7 @@ void render()
 	}
 	//
 	//Draw your 2D text here
-	/*
+
 	Rect r;
 	unsigned int c = 0x00111111;
 	for(int i = 0; i<5; i++)
@@ -352,25 +354,25 @@ void render()
 		switch(i)
 		{
 			case 0:
-				ggprint8b(&r, 16, c, "Requirements");
+				addText(r, "Requirements");
 				break;
 			case 1:
-				ggprint8b(&r, 16, c, "Design");
+				addText(r, "Design");
 				break;
 			case 2: 
-				ggprint8b(&r, 16, c, "Implementation");
+				addText(r, "Implementation");
 				break;
 			case 3:
-				ggprint8b(&r, 16, c, "Verification");
+				addText(r, "Verification");
 				break;
 			case 4:
-				ggprint8b(&r, 16, c, "Maintenance");
+				addText(r, "Maintenance");
 				break;
 			default:
 				break;
 		}	
 	}
-	*/
+	
 
 
 
